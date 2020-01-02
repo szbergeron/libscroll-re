@@ -120,7 +120,7 @@ caml!(libscroll_get_position_absolute(scrollview) {
 
 caml!(libscroll_push_pan(scrollview, axis, amount) {
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
-    let axis = axis.nativeint_val();
+    let axis = axis.usize_val();
     let axis = match axis {
         0 => libscroll::Axis::Horizontal,
         1 => libscroll::Axis::Vertical,
