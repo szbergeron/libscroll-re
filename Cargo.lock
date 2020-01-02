@@ -7,7 +7,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "libscroll"
-version = "0.1.1"
+version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "num 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -17,7 +17,8 @@ dependencies = [
 name = "libscroll-re"
 version = "0.1.0"
 dependencies = [
- "libscroll 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libscroll 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
+ "num 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "ocaml 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -98,7 +99,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [metadata]
 "checksum autocfg 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)" = "1d49d90015b3c36167a20fe2810c5cd875ad504b39cff3d4eae7977e6b7c1cb2"
-"checksum libscroll 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)" = "355bfc1cad42780dba09b94f8882471d0151625697a686a2a2d5c2d083c7f7ad"
+"checksum libscroll 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)" = "2f21fcd4701599e8ebf91ece71303e6ea99ef69dbc76e69c29929f211cb19df3"
 "checksum num 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "cf4825417e1e1406b3782a8ce92f4d53f26ec055e3622e1881ca8e9f5f9e08db"
 "checksum num-bigint 0.2.4 (registry+https://github.com/rust-lang/crates.io-index)" = "343b3df15c945a59e72aae31e89a7cfc9e11850e96d4fde6fed5e3c7c8d9c887"
 "checksum num-complex 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)" = "fcb0cf31fb3ff77e6d2a6ebd6800df7fdcd106f2ad89113c9130bcd07f93dffc"

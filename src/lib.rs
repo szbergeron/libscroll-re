@@ -1,4 +1,5 @@
 extern crate libscroll;
+extern crate num;
 
 
 
@@ -154,6 +155,20 @@ caml!(libscroll_push_interrupt(scrollview) {
         .as_mut()
         .expect(BAD_PTR)
         .push_interrupt();
+
+    Value::unit()
+});
+
+caml!(libscroll_set_source(scrollview, source) {
+    let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
+    //let source: libscroll::Source = std::mem::transmute(source.nativeint_val());
+    //let source: Option<libscroll::Source> = num::FromPrimitive::from_isize(source.nativeint_val());
+    let source: libscroll::Source = std::mem::transmute(source.usize_val() as u8);
+
+    scrollview
+        .as_mut()
+        .expect(BAD_PTR)
+        .set_source(source);
 
     Value::unit()
 });
