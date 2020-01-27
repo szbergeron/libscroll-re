@@ -3,6 +3,8 @@ name = "libscroll-re"
 version = "0.1.0"
 authors = ["Sawyer Bergeron <sawyerbergeron@gmail.com>"]
 edition = "2018"
+license = "MIT"
+description = "ocaml/reason bindings for libscroll, packaged into a system lib"
 
 [lib]
 name = "libscroll_re"
