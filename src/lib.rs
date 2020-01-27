@@ -132,7 +132,7 @@ caml!(libscroll_push_pan(scrollview, axis, amount) {
     scrollview
         .as_mut()
         .expect(BAD_PTR)
-        .push_pan(None, axis, amount);
+        .push_pan(axis, amount, None);
 
     Value::unit()
 });
@@ -143,7 +143,7 @@ caml!(libscroll_push_fling(scrollview) {
     scrollview
         .as_mut()
         .expect(BAD_PTR)
-        .push_fling();
+        .push_fling(None);
 
     Value::unit()
 });
@@ -154,7 +154,7 @@ caml!(libscroll_push_interrupt(scrollview) {
     scrollview
         .as_mut()
         .expect(BAD_PTR)
-        .push_interrupt();
+        .push_interrupt(None);
 
     Value::unit()
 });

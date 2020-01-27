@@ -1,0 +1,11 @@
+{
+    "name": "esy-libscroll",
+    "version": "1.14",
+    "description": "OCaml bindings for libscroll",
+    "license": "MIT",
+    "esy": {
+        "build": [
+            ["bash", "-c", "#{os == 'linux' ? 'cargo build --release':'echo'}"]
+        ]
+    }
+}
