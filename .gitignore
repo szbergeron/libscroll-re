@@ -1,2 +1,6 @@
 /target
 **/*.rs.bk
+/rust/target
+/_esy
+/esy.lock
+/node_modules

@@ -25,3 +25,5 @@ external libscroll_set_geometry: (scrollview, float, float, float, float) => uni
 external libscroll_new: unit => scrollview = "libscroll_new";
 external libscroll_del: scrollview => unit = "libscroll_del";
 external libscroll_set_source: (scrollview, source) => unit = "libscroll_set_source";
+
+external libscroll_sanity: unit => unit = "libscroll_sanity";

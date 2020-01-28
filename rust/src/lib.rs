@@ -172,3 +172,9 @@ caml!(libscroll_set_source(scrollview, source) {
 
     Value::unit()
 });
+
+caml!(libscroll_sanity() {
+    println!("Libscroll is reachable!");
+
+    Value::unit()
+});
