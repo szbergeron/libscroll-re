@@ -5,7 +5,7 @@
     "license": "MIT",
     "esy": {
         "build": [
-            ["bash", "-c", "#{os == 'linux' ? 'cargo build --release':'echo'}"]
+            ["bash", "-c", "#{os == 'linux' ? 'cargo build --release --manifest-path ./rust/Cargo.toml':'echo'}"]
         ]
     }
 }
