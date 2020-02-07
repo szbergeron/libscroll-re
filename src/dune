@@ -1,0 +1,6 @@
+(library
+  (name Libscroll)
+  (public_name Libscroll)
+  (c_flags (-lpthread -l/home/sawyer/oss/libscroll-re/rust/target/release/liblibscroll.a)))
+
+(ignored_subdirs (node_modules))

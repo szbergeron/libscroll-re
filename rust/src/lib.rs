@@ -10,6 +10,7 @@ static BAD_PTR: &str = "ERROR: null/invalid ptr passed as scrollview handle";
 
 //use ocaml::core::memory;
 use ocaml::{ToValue, Value};
+use ocaml::core::memory;
 
 caml!(libscroll_new() {
     //std::mem::transmute::<*mut libscroll::Scrollview, Value>(Box::into_raw(Box::new(libscroll::Scrollview::new())))
@@ -173,8 +174,15 @@ caml!(libscroll_set_source(scrollview, source) {
     Value::unit()
 });
 
-caml!(libscroll_sanity() {
+/*caml!(libscroll_sanity() {
     println!("Libscroll is reachable!");
 
     Value::unit()
-});
+});*/
+
+#[no_mangle]
+pub extern fn libscroll_sanity() -> Value {
+    println!("Libscroll is reachable!");
+
+    Value::unit()
+}

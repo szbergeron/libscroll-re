@@ -1,11 +1,21 @@
 {
-    "name": "esy-libscroll",
+    "name": "libscroll",
     "version": "1.14",
     "description": "OCaml bindings for libscroll",
     "license": "MIT",
     "esy": {
         "build": [
-            ["bash", "-c", "#{os == 'linux' ? 'cargo build --release --manifest-path ./rust/Cargo.toml':'echo'}"]
+            ["bash", "-c", "#{os == 'linux' ? 'cargo build --release --manifest-path ./rust/Cargo.toml':'echo Cargo build skipped'}"],
+            ["refmterr", "dune", "build", "-p", "Libscroll", "-j4"]
         ]
+    },
+    "dependencies": {
+        "@opam/dune": "*",
+        "refmterr": "*"
+    },
+    "devDependencies": {
+        "ocaml": ">=4.6.0 <4.9.0",
+        "@opam/merlin": "*",
+        "@opam/dune": "*"
     }
 }

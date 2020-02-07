@@ -1,0 +1,4 @@
+EXCLUDE_QUERY_DIR
+B /home/sawyer/oss/revery/_esy/default/store/b/libscroll-0faf1b76/default/src/.Libscroll.objs/byte
+S .
+FLG -w -40
