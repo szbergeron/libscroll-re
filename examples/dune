@@ -1,0 +1,4 @@
+(library
+    (name libscroll_sanity)
+    (libraries libscroll)
+)

@@ -1,6 +1,7 @@
 (library
   (name Libscroll)
   (public_name Libscroll)
-  (c_flags (-lpthread -l/home/sawyer/oss/libscroll-re/rust/target/release/liblibscroll.a)))
+  (c_flags (-fPIE))
+  (c_library_flags (-lpthread -lc -lm /home/sawyer/oss/libscroll-re/rust/target/release/liblibscroll_re.a)))
 
 (ignored_subdirs (node_modules))

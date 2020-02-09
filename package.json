@@ -5,7 +5,7 @@
     "license": "MIT",
     "esy": {
         "build": [
-            ["bash", "-c", "#{os == 'linux' ? 'cargo build --release --manifest-path ./rust/Cargo.toml':'echo Cargo build skipped'}"],
+            ["bash", "-c", "#{os == 'linux' ? 'cargo rustc --release --manifest-path ./rust/Cargo.toml -- -Z print-link-args -C link-args=\"fPIE -pie\"':'echo Cargo build skipped'}"],
             ["refmterr", "dune", "build", "-p", "Libscroll", "-j4"]
         ]
     },

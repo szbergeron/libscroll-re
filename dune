@@ -1,0 +1,11 @@
+(library
+ (name sanity_ocaml)
+ (modules Sanity_ocaml)
+ (c_names sanity)
+ (c_flags (-fPIE))
+ (c_library_flags (-lpthread /home/sawyer/oss/libscroll-re/rust/target/release/liblibscroll_re.a -lpthread -lc -lm)))
+
+(executable
+ (name Exec)
+ (modules Exec)
+ (libraries sanity_ocaml))

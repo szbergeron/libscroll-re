@@ -12,12 +12,20 @@ static BAD_PTR: &str = "ERROR: null/invalid ptr passed as scrollview handle";
 use ocaml::{ToValue, Value};
 use ocaml::core::memory;
 
+//static mut VIEWS: Option<std::sync::Mutex<std::collections::HashMap<i64, libscroll::Scrollview>>> = None;
+
+/*caml!(libscroll_get_by_handle(handle) {
+    //
+});*/
+
 caml!(libscroll_new() {
     //std::mem::transmute::<*mut libscroll::Scrollview, Value>(Box::into_raw(Box::new(libscroll::Scrollview::new())))
+    VIEWS = Some(std::sync::Mutex::new(std::collections::HashMap::new()));
 
     caml_local!(result);
 
     //result = std::mem::transmute(Box::into_raw(Box::new(libscroll::Scrollview::new())));
+    println!("Libscroll: Creating new scrollview");
 
     //return result;
     Value::ptr(Box::into_raw(Box::new(libscroll::Scrollview::new())))
@@ -26,6 +34,8 @@ caml!(libscroll_new() {
 
 caml!(libscroll_del(scrollview) {
     let _: Box<libscroll::Scrollview> = Box::from_raw(std::mem::transmute(scrollview));
+
+    println!("Libscroll: Dropped scrollview");
     // drops
 
     Value::unit()
@@ -44,6 +54,8 @@ caml!(libscroll_set_geometry(
     let content_width = content_width.int64_val() as u64;
     let viewport_width = viewport_width.int64_val() as u64;
     let viewport_height = viewport_height.int64_val() as u64;
+
+    println!("Libscroll: Setting scrollview geometry");
 
     scrollview
         .as_mut()
@@ -68,12 +80,16 @@ caml!(libscroll_animating(scrollview) {
         .animating()
         .into();
 
+    println!("Libscroll: animating returns: {}", result);
+
     //return scrollview.animating().bool_val()
     Value::nativeint(result)
 });
 
 caml!(libscroll_step_frame(scrollview) {
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
+
+    println!("Libscroll: stepping frame");
 
     scrollview
         .as_mut()
@@ -88,6 +104,8 @@ caml!(libscroll_set_avg_frametime(scrollview, milliseconds) {
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
     let milliseconds = milliseconds.f64_val();
 
+    println!("Libscroll: Setting avg frametime to {} milliseconds", milliseconds);
+
     scrollview
         .as_mut()
         .expect(BAD_PTR)
@@ -100,6 +118,8 @@ caml!(libscroll_set_next_frame_predict(scrollview, milliseconds) {
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
     let milliseconds = milliseconds.f64_val();
 
+    println!("Libscroll: predict next frame in {} millis", milliseconds);
+
     scrollview
         .as_mut()
         .expect(BAD_PTR)
@@ -110,6 +130,8 @@ caml!(libscroll_set_next_frame_predict(scrollview, milliseconds) {
 
 caml!(libscroll_get_position_absolute(scrollview) {
     let scrollview = scrollview.ptr_val::<libscroll::Scrollview>();
+
+    println!("Libscroll: Was requested position absolute");
 
     let pos = scrollview
         .as_ref()
@@ -130,6 +152,9 @@ caml!(libscroll_push_pan(scrollview, axis, amount) {
 
     let amount = amount.f64_val();
 
+    //println!("Libscroll: pushing pan on axis {:?} with amount {}", axis, amount);
+    println!("Libscroll: pushing pan of amount {}", amount);
+
     scrollview
         .as_mut()
         .expect(BAD_PTR)
@@ -141,6 +166,8 @@ caml!(libscroll_push_pan(scrollview, axis, amount) {
 caml!(libscroll_push_fling(scrollview) {
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
 
+    println!("Libscroll: pushing fling");
+
     scrollview
         .as_mut()
         .expect(BAD_PTR)
@@ -151,6 +178,8 @@ caml!(libscroll_push_fling(scrollview) {
 
 caml!(libscroll_push_interrupt(scrollview) {
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
+
+    println!("Libscroll: pushing interrupt");
 
     scrollview
         .as_mut()
@@ -166,6 +195,9 @@ caml!(libscroll_set_source(scrollview, source) {
     //let source: Option<libscroll::Source> = num::FromPrimitive::from_isize(source.nativeint_val());
     let source: libscroll::Source = std::mem::transmute(source.usize_val() as u8);
 
+    //println!("Libscroll: setting source to {:?}", source);
+    println!("Libscroll: setting source");
+
     scrollview
         .as_mut()
         .expect(BAD_PTR)
@@ -174,15 +206,15 @@ caml!(libscroll_set_source(scrollview, source) {
     Value::unit()
 });
 
-/*caml!(libscroll_sanity() {
+caml!(libscroll_sanity() {
     println!("Libscroll is reachable!");
 
     Value::unit()
-});*/
+});
 
-#[no_mangle]
+/*#[no_mangle]
 pub extern fn libscroll_sanity() -> Value {
     println!("Libscroll is reachable!");
 
     Value::unit()
-}
+}*/

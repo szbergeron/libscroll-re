@@ -4,3 +4,10 @@
 /_esy
 /esy.lock
 /node_modules
+esy.lock/
+src/.merlin
+*.merlin
+*.install
+_build/
+_opam
+
