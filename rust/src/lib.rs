@@ -20,7 +20,7 @@ use ocaml::core::memory;
 
 caml!(libscroll_new() {
     //std::mem::transmute::<*mut libscroll::Scrollview, Value>(Box::into_raw(Box::new(libscroll::Scrollview::new())))
-    VIEWS = Some(std::sync::Mutex::new(std::collections::HashMap::new()));
+    //VIEWS = Some(std::sync::Mutex::new(std::collections::HashMap::new()));
 
     caml_local!(result);
 
