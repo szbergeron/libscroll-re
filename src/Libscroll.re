@@ -16,7 +16,6 @@ type source =
 external push_pan: (scrollview, axis, float) => unit = "libscroll_push_pan";
 external push_interrupt: scrollview => unit = "libscroll_push_interrupt";
 external push_fling: scrollview => unit = "libscroll_push_fling";
-external step_frame: scrollview => unit = "libscroll_step_frame";
 external animating: scrollview => bool = "libscroll_animating";
 external set_geometry: (scrollview, float, float, float, float) => unit = "libscroll_set_geometry";
 external scrollview_new: unit => scrollview = "libscroll_new";
