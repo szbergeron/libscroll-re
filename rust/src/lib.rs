@@ -86,7 +86,7 @@ caml!(libscroll_animating(scrollview) {
     Value::nativeint(result)
 });
 
-caml!(libscroll_step_frame(scrollview) {
+/*caml!(libscroll_step_frame(scrollview) {
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
 
     println!("Libscroll: stepping frame");
@@ -98,9 +98,9 @@ caml!(libscroll_step_frame(scrollview) {
 
 
     Value::unit()
-});
+});*/
 
-caml!(libscroll_set_avg_frametime(scrollview, milliseconds) {
+/*caml!(libscroll_set_avg_frametime(scrollview, milliseconds) {
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
     let milliseconds = milliseconds.f64_val();
 
@@ -112,9 +112,9 @@ caml!(libscroll_set_avg_frametime(scrollview, milliseconds) {
         .set_avg_frametime(milliseconds);
 
     Value::unit()
-});
+});*/
 
-caml!(libscroll_set_next_frame_predict(scrollview, milliseconds) {
+/*caml!(libscroll_set_next_frame_predict(scrollview, milliseconds) {
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
     let milliseconds = milliseconds.f64_val();
 
@@ -126,9 +126,9 @@ caml!(libscroll_set_next_frame_predict(scrollview, milliseconds) {
         .set_next_frame_predict(milliseconds);
 
     Value::unit()
-});
+});*/
 
-caml!(libscroll_get_position_absolute(scrollview) {
+/*caml!(libscroll_get_position_absolute(scrollview) {
     let scrollview = scrollview.ptr_val::<libscroll::Scrollview>();
 
     println!("Libscroll: Was requested position absolute");
@@ -139,6 +139,20 @@ caml!(libscroll_get_position_absolute(scrollview) {
         .get_position_absolute();
 
     tuple!(pos.x, pos.y).into()
+});*/
+
+caml!(libscroll_sample(scrollview, timestamp_micros) {
+    let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
+    let timestamp_micros = timestamp_micros.i64_val() as u64;
+
+    println!("Sampling for libscroll! Timestamp: {}", timestamp_micros);
+
+    let result = scrollview
+        .as_mut()
+        .expect(BAD_PTR)
+        .sample(timestamp_micros);
+
+    tuple!(result.x, result.y).into()
 });
 
 caml!(libscroll_push_pan(scrollview, axis, amount) {
