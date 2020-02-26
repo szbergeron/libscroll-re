@@ -155,7 +155,7 @@ caml!(libscroll_sample(scrollview, timestamp_micros) {
     tuple!(result.x, result.y).into()
 });
 
-caml!(libscroll_push_pan(scrollview, axis, amount) {
+caml!(libscroll_push_pan(scrollview, axis, amount, timestamp) {
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
     let axis = axis.usize_val();
     let axis = match axis {
@@ -163,6 +163,7 @@ caml!(libscroll_push_pan(scrollview, axis, amount) {
         1 => libscroll::Axis::Vertical,
         other => panic!("Bad input for axis bounds {}, expected 0 (horizontal) or 1 (vertical)", other),
     };
+    let timestamp = timestamp.i64_val() as u64;
 
     let amount = amount.f64_val();
 
@@ -172,33 +173,35 @@ caml!(libscroll_push_pan(scrollview, axis, amount) {
     scrollview
         .as_mut()
         .expect(BAD_PTR)
-        .push_pan(axis, amount, None);
+        .push_pan(axis, amount, Some(timestamp));
 
     Value::unit()
 });
 
-caml!(libscroll_push_fling(scrollview) {
+caml!(libscroll_push_fling(scrollview, timestamp) {
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
+    let timestamp = timestamp.i64_val() as u64;
 
     println!("Libscroll: pushing fling");
 
     scrollview
         .as_mut()
         .expect(BAD_PTR)
-        .push_fling(None);
+        .push_fling(Some(timestamp));
 
     Value::unit()
 });
 
-caml!(libscroll_push_interrupt(scrollview) {
+caml!(libscroll_push_interrupt(scrollview, timestamp) {
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
+    let timestamp = timestamp.i64_val() as u64;
 
     println!("Libscroll: pushing interrupt");
 
     scrollview
         .as_mut()
         .expect(BAD_PTR)
-        .push_interrupt(None);
+        .push_interrupt(Some(timestamp));
 
     Value::unit()
 });
