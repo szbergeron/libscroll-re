@@ -25,7 +25,7 @@ caml!(libscroll_new() {
     caml_local!(result);
 
     //result = std::mem::transmute(Box::into_raw(Box::new(libscroll::Scrollview::new())));
-    println!("Libscroll: Creating new scrollview");
+    println!("Libscroll: Creating new scrollview!");
 
     //return result;
     Value::ptr(Box::into_raw(Box::new(libscroll::Scrollview::new())))
@@ -213,7 +213,7 @@ caml!(libscroll_set_source(scrollview, source) {
     let source: libscroll::Source = std::mem::transmute(source.usize_val() as u8);
 
     //println!("Libscroll: setting source to {:?}", source);
-    println!("Libscroll: setting source");
+    println!("Libscroll: setting source: {:?}", source);
 
     scrollview
         .as_mut()

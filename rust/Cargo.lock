@@ -31,7 +31,6 @@ dependencies = [
 [[package]]
 name = "libscroll"
 version = "0.1.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "flo_curves 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "num 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -41,7 +40,7 @@ dependencies = [
 name = "libscroll-re"
 version = "0.1.0"
 dependencies = [
- "libscroll 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libscroll 0.1.6",
  "num 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "ocaml 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
@@ -136,7 +135,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum either 1.5.3 (registry+https://github.com/rust-lang/crates.io-index)" = "bb1f6b1ce1c140482ea30ddd3335fc0024ac7ee112895426e0a629a6c20adfe3"
 "checksum flo_curves 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)" = "1c227ffb4f98baa9073c033e23243089d0ed3dd1f5cd620894452074db48a29b"
 "checksum itertools 0.8.2 (registry+https://github.com/rust-lang/crates.io-index)" = "f56a2d0bc861f9165be4eb3442afd3c236d8a98afd426f65d92324ae1091a484"
-"checksum libscroll 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)" = "67417022e8c5b5d500ca9f8157bee07153746ebc661c1ee55739bac8a10cd09c"
 "checksum num 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "cf4825417e1e1406b3782a8ce92f4d53f26ec055e3622e1881ca8e9f5f9e08db"
 "checksum num-bigint 0.2.4 (registry+https://github.com/rust-lang/crates.io-index)" = "343b3df15c945a59e72aae31e89a7cfc9e11850e96d4fde6fed5e3c7c8d9c887"
 "checksum num-complex 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)" = "fcb0cf31fb3ff77e6d2a6ebd6800df7fdcd106f2ad89113c9130bcd07f93dffc"
