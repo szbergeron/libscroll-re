@@ -50,10 +50,10 @@ caml!(libscroll_set_geometry(
 ) {
     //let mut scrollview: Box<libscroll::Scrollview> = Box::from_raw(std::mem::transmute(scrollview));
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
-    let content_height = content_height.int64_val() as u64;
-    let content_width = content_width.int64_val() as u64;
-    let viewport_width = viewport_width.int64_val() as u64;
-    let viewport_height = viewport_height.int64_val() as u64;
+    let content_height = content_height.f64_val();
+    let content_width = content_width.f64_val();
+    let viewport_width = viewport_width.f64_val();
+    let viewport_height = viewport_height.f64_val();
 
     println!("Libscroll: Setting scrollview geometry");
 
@@ -74,16 +74,18 @@ caml!(libscroll_animating(scrollview) {
     //let scrollview: Box<libscroll::Scrollview> = Box::from_raw(std::mem::transmute(scrollview));
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
 
-    let result: isize = scrollview
+    let result: bool = scrollview
         .as_mut()
         .expect(BAD_PTR)
-        .animating()
-        .into();
+        .animating();
 
-    println!("Libscroll: animating returns: {}", result);
+    //println!("Libscroll: animating returns: {}", result);
 
     //return scrollview.animating().bool_val()
-    Value::nativeint(result)
+    //scrollview.animating().bool_val();
+    //scrollview.bool_val();
+    Value::bool(result)
+    //Value::nativeint(result)
 });
 
 /*caml!(libscroll_step_frame(scrollview) {
@@ -145,12 +147,14 @@ caml!(libscroll_sample(scrollview, timestamp_micros) {
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
     let timestamp_micros = timestamp_micros.i64_val() as u64;
 
-    println!("Sampling for libscroll! Timestamp: {}", timestamp_micros);
+    //println!("Sampling for libscroll! Timestamp: {}", timestamp_micros);
 
     let result = scrollview
         .as_mut()
         .expect(BAD_PTR)
         .sample(timestamp_micros);
+
+    //println!("\tGets {}, {}", result.x, result.y);
 
     tuple!(result.x, result.y).into()
 });
@@ -168,7 +172,7 @@ caml!(libscroll_push_pan(scrollview, axis, amount, timestamp) {
     let amount = amount.f64_val();
 
     //println!("Libscroll: pushing pan on axis {:?} with amount {}", axis, amount);
-    println!("Libscroll: pushing pan of amount {}", amount);
+    //println!("Libscroll: pushing pan of amount {}", amount);
 
     scrollview
         .as_mut()
@@ -178,11 +182,12 @@ caml!(libscroll_push_pan(scrollview, axis, amount, timestamp) {
     Value::unit()
 });
 
-caml!(libscroll_push_fling(scrollview, timestamp) {
+caml!(libscroll_push_fling(scrollview, axis, timestamp) {
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
     let timestamp = timestamp.i64_val() as u64;
+    //println!("Unwraps fling timestamp to {}", timestamp);
 
-    println!("Libscroll: pushing fling");
+    //println!("Libscroll: pushing fling");
 
     scrollview
         .as_mut()
@@ -196,7 +201,7 @@ caml!(libscroll_push_interrupt(scrollview, timestamp) {
     let scrollview = scrollview.mut_ptr_val::<libscroll::Scrollview>();
     let timestamp = timestamp.i64_val() as u64;
 
-    println!("Libscroll: pushing interrupt");
+    //println!("Libscroll: pushing interrupt");
 
     scrollview
         .as_mut()
@@ -213,7 +218,7 @@ caml!(libscroll_set_source(scrollview, source) {
     let source: libscroll::Source = std::mem::transmute(source.usize_val() as u8);
 
     //println!("Libscroll: setting source to {:?}", source);
-    println!("Libscroll: setting source: {:?}", source);
+    //println!("Libscroll: setting source: {:?}", source);
 
     scrollview
         .as_mut()
