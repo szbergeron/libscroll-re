@@ -55,7 +55,7 @@ caml!(libscroll_set_geometry(
     let viewport_width = viewport_width.f64_val();
     let viewport_height = viewport_height.f64_val();
 
-    println!("Libscroll: Setting scrollview geometry");
+    //println!("Libscroll: Setting scrollview geometry");
 
     scrollview
         .as_mut()
